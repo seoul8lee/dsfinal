@@ -20,39 +20,8 @@ typedef struct TreeType {
 
 typedef struct TreeType* TreePtr;
 
-typedef struct StkType {
-	int data;
-	struct StkType* prev;
-}Stk;
 
-typedef struct StkType* StkPtr;
-
-typedef struct HeadType {
-	int cnt;
-	struct StkType* top;
-}Head;
-
-typedef struct HeadType* HeadPtr;
-
-HeadPtr head_new() {
-	HeadPtr h = (HeadPtr)malloc(sizeof(Head));
-	h->cnt = 0;
-	h->top = NULL;
-}
-
-void stk_push(HeadPtr h, int n) {
-	StkPtr s = (StkPtr)malloc(sizeof(Stk));
-	s->data = n;
-
-	if (h->top != NULL)
-		s->prev = h->top;
-
-	h->cnt++;
-	h->top = s;
-}
-
-
-// t->nil 持失
+//make t->nil 
 NodePtr rbt_nil() {
 	NodePtr node = (NodePtr)malloc(sizeof(Node));
 	node->color = false;
@@ -63,7 +32,7 @@ NodePtr rbt_nil() {
 	return node;
 }
 
-// t 持失
+//make tree
 TreePtr rbt_init() {
 	TreePtr tree = (TreePtr)malloc(sizeof(Tree));
 	tree->nil = rbt_nil();
@@ -71,7 +40,7 @@ TreePtr rbt_init() {
 	return tree;
 }
 
-// node 持失
+//make node
 NodePtr node_alloc(TreePtr t, int n) {
 	NodePtr node = (NodePtr)malloc(sizeof(Node));
 	node->color = true;
